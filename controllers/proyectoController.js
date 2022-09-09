@@ -4,7 +4,7 @@ const obtenerProyectos = async (req, res) => {
 	const proyectos = await Proyecto.find()
 		.where("creador")
 		.equals(req.usuario);
-	console.log(proyectos);
+	res.json(proyectos);
 };
 const nuevoProyecto = async (req, res) => {
 	const proyecto = new Proyecto(req.body);
