@@ -28,8 +28,7 @@ const obtenerProyecto = async (req, res) => {
 		const error = new Error("Acción no Válida");
 		return res.status(401).json({ msg: error.message });
 	}
-	const tareas = await Tarea.find().where("proyecto").equals(proyecto._id);
-	res.json({ proyecto, tareas });
+	res.json(proyecto);
 };
 const editarProyecto = async (req, res) => {
 	const { id } = req.params;
