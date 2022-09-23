@@ -4,7 +4,6 @@ import Tarea from "../models/Tarea.js";
 const agregarTarea = async (req, res) => {
 	const { proyecto } = req.body;
 	const existeProyecto = await Proyecto.findById(proyecto);
-	console.log(existeProyecto);
 	if (!existeProyecto) {
 		const error = new Error("El proyecto no existe");
 		res.status(404).json({ msg: error.message });
@@ -15,8 +14,12 @@ const agregarTarea = async (req, res) => {
 	}
 	try {
 		const tareaAlmacenada = await Tarea.create(req.body);
+		existeProyecto.tareas.push(tareaAlmacenada._id);
+		await existeProyecto.save();
 		res.json(tareaAlmacenada);
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 };
 const obtenerTarea = async (req, res) => {
 	const { id } = req.params;
