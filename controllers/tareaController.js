@@ -66,8 +66,8 @@ const eliminarTarea = async (req, res) => {
 		const error = new Error("Acción no Válida");
 		return res.status(403).json({ msg: error.message });
 	}
-	const tareaEliminada = await Tarea.deleteOne();
-	res.json(tareaEliminada);
+	await Tarea.deleteOne();
+	res.json({ msg: "La Tarea se eliminó" });
 };
 
 const cambiarEstado = async (req, res) => {};
