@@ -42,9 +42,21 @@ const io = new Server(servidor, {
 	},
 });
 io.on("connection", (socket) => {
-	console.log("conectado a socket io");
+	//console.log("conectado a socket io");
 	//Definir los eventos
 	socket.on("abrir proyecto", (proyecto) => {
 		socket.join(proyecto);
+	});
+	socket.on("nueva tarea", (tarea) => {
+		socket.to(tarea.proyecto).emit("tarea agregada", tarea);
+	});
+	socket.on("eliminar tarea", (tarea) => {
+		socket.to(tarea.proyecto).emit("tarea eliminada", tarea);
+	});
+	socket.on("editar tarea", (tarea) => {
+		socket.to(tarea.proyecto._id).emit("tarea editada", tarea);
+	});
+	socket.on("completar tarea", (tarea) => {
+		socket.to(tarea.proyecto._id).emit("tarea completada", tarea);
 	});
 });
