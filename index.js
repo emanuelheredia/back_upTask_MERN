@@ -10,7 +10,7 @@ const app = express();
 dotenv.config();
 conectarDB();
 //configurar cors
-const whiteList = [process.env.FRONTEND_URL];
+const whiteList = [process.env.FRONTEND_URL, process.env.MONGO_URI];
 const corsOptions = {
 	origin: function (origin, callback) {
 		if (whiteList.includes(origin)) {
