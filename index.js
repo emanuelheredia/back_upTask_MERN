@@ -38,7 +38,7 @@ import { Server } from "socket.io";
 const io = new Server(servidor, {
 	pingTimeout: 60000,
 	cors: {
-		origin: process.env.FRONTEND_URL,
+		origin: "*",
 	},
 });
 io.on("connection", (socket) => {
