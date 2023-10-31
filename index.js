@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import conectarDB from "./config/db.js";
+import connect from "./config/db.js";
 import usuarioRoutes from "./routes/usuarioRoutes.js";
 import proyectoRoutes from "./routes/proyectoRoutes.js";
 import tareaRoute from "./routes/tareaRoutes.js";
@@ -8,7 +8,7 @@ import cors from "cors";
 
 const app = express();
 dotenv.config();
-conectarDB();
+connect();
 //configurar cors
 const whiteList = [process.env.FRONTEND_URL, process.env.MONGO_URI];
 const corsOptions = {
